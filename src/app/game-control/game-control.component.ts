@@ -5,11 +5,18 @@ import { Component, EventEmitter, Output } from '@angular/core';
   templateUrl: './game-control.component.html',
   styleUrls: ['./game-control.component.css']
 })
-export class GameControlComponent {
-    @Output() gameStarted = new EventEmitter<>();
+export class GameControlComponent {    
+    @Output() gameStarted: EventEmitter<number> = new EventEmitter<number>();
 
     onStartGame() {
-        this.gameStarted.emit()
+        var event = setInterval(this.increment, 1000);
+    }
+
+    increment() {
+        var count = 0;
+        count++;
+        this.gameStarted.emit(count);
+        console.log("count: " + count);
     }
 
 }
