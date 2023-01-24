@@ -17,11 +17,8 @@ export class GameControlComponent {
         }, 1000);
     }
 
-    increment() {
-        var count = 0;
-        count++;
-        this.gameStarted.emit(count);
-        console.log("count: " + count);
+    onStopGame() {
+        clearInterval(this.interval);
     }
 
 }
