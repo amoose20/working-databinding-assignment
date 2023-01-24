@@ -6,10 +6,15 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./game-control.component.css']
 })
 export class GameControlComponent {    
+    interval;
+    lastNumber = 0;
     @Output() gameStarted: EventEmitter<number> = new EventEmitter<number>();
 
     onStartGame() {
-        var event = setInterval(this.increment, 1000);
+        this.interval = setInterval(() => {
+            this.gameStarted.emit(this.lastNumber + 1);
+            this.lastNumber++;
+        }, 1000);
     }
 
     increment() {
